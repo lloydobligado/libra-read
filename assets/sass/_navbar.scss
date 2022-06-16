@@ -1,0 +1,166 @@
+@use 'functions' as function;
+@use 'breakpoints' as b;
+@forward 'colors';
+
+.main {
+    .nav-container {
+        top: 0;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--light);
+        width: 100%;
+
+        .logo-container {
+            display: flex;
+            margin: 0 0 0 function.rem(40);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            
+            .logo {
+                height: function.rem(50);
+            }
+
+            h1 {
+                margin-left: function.rem(10);
+            }
+        }
+
+        .menu-container {
+            display: flex;
+            margin: 0 function.rem(40);
+    
+            .nav-slide {
+                margin: auto;
+
+                .navlink {
+                    display: flex;
+                    
+                    li {
+                        padding: 0 function.rem(20);
+
+                        a {
+                            font-weight: 700;
+                        }
+
+                        a:hover {
+                            color: var(--primaryHover);
+                            transition: 500ms;
+                        }
+                    }
+                }
+            }
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        //media queries
+        @include b.breakpoint(small) {
+            .menu-container {
+                position: fixed;
+                right: function.rem(0);
+                top: function.rem(60);
+                width: 80%;
+                height: calc(100% - function.rem(60));
+                margin: unset;
+                background-color: var(--light);
+                transform: translateX(100%);
+                transition: 1s;
+
+                &.active {
+                    transform-origin: right;
+                    transition: 1s;
+                    transform: translateX(0%);
+                }
+                
+                .nav-slide { 
+                    margin: function.rem(15) 0;
+                    width: 100%;
+                    
+                    .navlink {
+                        flex-direction: column;
+                        text-align: center;
+                        width: 100%;
+                        li {
+                            padding: function.rem(10) 0;
+                            cursor: pointer;
+                        }
+
+                        li:hover{
+                            background-color: var(--primary);
+                            transition: 1s;
+
+                            a {
+                                color: var(--light);
+                                }
+                        }
+                    }
+                }
+            }
+
+            .hamburger {
+                margin: function.rem(10) function.rem(40) function.rem(10) 0;
+                height: function.rem(40);
+                width: function.rem(40);
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: all 500ms ease-in-out;
+
+                &__span, &__span::before, &__span::after {
+                    height: function.rem(4);
+                    width: function.rem(30);
+                    background-color: var(--dark);
+                    border: none;
+                    border-radius: function.rem(5);
+                    transition: all 500ms ease-in-out;
+                }
+
+                &__span::before, &__span::after {
+                    content: '';
+                    position: absolute;
+                }
+
+                &__span::before {
+                    transform: translateY(function.rem(-8));
+                }
+
+                &__span::after {
+                    transform: translateY(function.rem(8));
+                }
+            }
+            
+            .hamburger.open {
+                .hamburger__span {
+                    transform: translateX(function.rem(-20));
+                    background-color: transparent;
+                }
+            }
+
+            .hamburger.open {
+                .hamburger__span::before {
+                    transform: rotate(-45deg) translate(function.rem(5), function.rem(5))
+                }
+            }
+
+            .hamburger.open {
+                .hamburger__span::after {
+                    transform: rotate(-45deg) translate(function.rem(5), function.rem(5))
+                }
+            }
+
+            .hamburger:hover {
+                border: none;
+                border-radius: function.rem(50);
+                background-color: var(--lightgray);
+                transition: 500ms;
+            }
+        }
+
+    }
+}

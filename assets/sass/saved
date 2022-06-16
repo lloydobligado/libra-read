@@ -1,0 +1,151 @@
+@use 'breakpoints' as b;
+@forward 'colors';
+@use 'fonts' as font;
+@use 'functions' as function;
+
+.main {
+    .hero-container {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: auto;
+        gap: function.rem(40);
+        position: fixed;
+        height: calc(100% - function.rem(140));
+        width: calc(100% - function.rem(80));
+        margin: function.rem(40);
+        top: function.rem(60);
+        z-index: -1;
+
+        &__form, &__table {
+            background-color: var(--light);
+            height: 100%;
+            border: none;
+            border-radius: function.rem(5);
+            box-shadow: 0 0 function.rem(20) rgba(0, 0, 0, 0.178)
+        }
+
+        &__form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            &__inputs {
+                flex: 1;
+                padding: function.rem(20) function.rem(40);
+                
+
+                &__group {
+                    display: flex;
+                    margin: function.rem(15) 0;
+                    justify-content: center;
+                    
+
+                    &__formcontrol {
+                        text-indent: function.rem(5);
+                        line-height: function.rem(30);
+                        font-size: function.rem(15);
+                        width: 50%;
+                        min-width: function.rem(220);
+                    }
+                }
+            }
+
+            hr {
+                margin: auto;
+                width: 90%;
+            }
+
+            &__btn {
+                display: flex;
+                justify-content: end;
+                padding: function.rem(10) function.rem(40);
+                
+                &__primary {
+                    border: none;
+                    border-radius: function.rem(5);
+                    text-transform: uppercase;
+                    width: function.rem(100);
+                    padding: function.rem(10);
+                    background-color: var(--primary);
+                    color: var(--light);
+                    cursor: pointer;
+                }
+
+                &__primary:hover {
+                    background-color: #005eb1;
+                    transition: 1s;
+                }
+                
+            }
+        }
+
+        &__table {
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            &__content{
+                border-collapse: collapse;
+                font-size: function.rem(14.4);
+                width: 100%;
+               
+
+                thead {
+                    th {
+                        padding: function.rem(12) function.rem(15);
+                        background-color: var(--primary);
+                        color: var(--light);
+                        text-align: center;
+                        font-weight: 700;
+                        
+                    }
+                }
+
+                tbody{
+                    tr {
+                        border-bottom: function.rem(1) solid #ddd;
+                    }
+
+                    tr:nth-of-type(even) {
+                        background-color: #f3f3f3;
+                    }
+
+                    tr:last-of-type {
+                        border-bottom: function.rem(2) solid var(--primary);
+                    }
+
+                    td {
+                        padding: function.rem(12) function.rem(15);
+                        text-align: center;
+                        a{
+                            i{
+                                font-size: function.rem(20);
+                                color: rgb(136, 0, 0);
+                            }
+
+                            i:hover{
+                                color: rgb(216, 0, 0);
+                                transition: 1s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //media queries
+    @include b.breakpoint-up(small) {
+        .hero-container {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+
+            &__form {
+                height: min-content;
+            }
+
+            &__table {
+                height: 50%;
+            }
+        }
+    }
+}

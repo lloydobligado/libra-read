@@ -1,0 +1,178 @@
+@use 'breakpoints' as b;
+@forward 'colors';
+@use 'fonts' as font;
+@use 'functions' as function;
+
+.main {
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        height: calc(100vh - function.rem(140));
+        width: calc(100% - function.rem(80));
+        margin: function.rem(40);
+        top: function.rem(60);
+        z-index: -1;
+
+        .alert {
+            text-align: center;
+            padding: function.rem(2);
+            color: var(--light);
+            height: fit-content;
+
+            &__danger {
+                background-color: var(--danger);
+            }
+            &__success {
+                background-color: var(--success);
+            }
+        }
+
+        &__form, &__table {
+            background-color: var(--light);
+            height: 100%;
+            border-bottom: function.rem(2) solid var(--primary);
+            border-radius: function.rem(5);
+            box-shadow: 0 0 function.rem(20) rgba(0, 0, 0, 0.178)
+        }
+
+        &__form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: function.rem(40);
+            &__h1 {
+                padding: function.rem(3) function.rem(20);
+                width: 100%;
+                background-color: var(--primary);
+                color: var(--light);
+            }
+
+            &__inputs {
+                flex: 1;
+                padding: function.rem(20) function.rem(40);
+                margin: 0 15%;
+
+                &__group {
+                    display: flex;
+                    margin: function.rem(5) 0;
+                    justify-content: left;
+                    
+                    label {
+                        width: function.rem(100);
+                        
+                    }
+
+                    &__formcontrol {
+                        text-indent: function.rem(5);
+                        line-height: function.rem(20);
+                        font-size: function.rem(13);
+                        width: 100%;
+                        min-width: function.rem(220);
+                    }
+                }
+            }
+
+            hr {
+                margin: auto;
+                width: 90%;
+            }
+
+            &__btn {
+                display: flex;
+                justify-content: end;
+                padding: function.rem(10) function.rem(40);
+                
+                &__primary {
+                    border: none;
+                    border-radius: function.rem(5);
+                    text-transform: uppercase;
+                    width: function.rem(100);
+                    padding: function.rem(10);
+                    background-color: var(--primary);
+                    color: var(--light);
+                    cursor: pointer;
+                }
+
+                &__primary:hover {
+                    background-color: var(--primaryHover);
+                    transition: 1s;
+                }
+                
+            }
+        }
+
+        &__table {
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            &__content{
+                border-collapse: collapse;
+                font-size: function.rem(14.4);
+                width: 100%;
+               
+
+                thead {
+                    th {
+                        padding: function.rem(12) function.rem(15);
+                        background-color: var(--primary);
+                        color: var(--light);
+                        text-align: center;
+                        font-weight: 700;
+                        
+                    }
+                }
+
+                tbody{
+                    tr {
+                        border-bottom: function.rem(1) solid #ddd;
+                    }
+
+                    tr:nth-of-type(even) {
+                        background-color: #f3f3f3;
+                    }
+
+                    td {
+                        padding: function.rem(12) function.rem(15);
+                        text-align: center;
+                        a{
+                            font-size: function.rem(20);
+                            color: var(--danger);
+                        }
+
+                        a:hover{
+                            color: var(--dangerHover);
+                            transition: 1s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //media queries
+    @include b.breakpoint(small) {
+        .hero-container {
+            &__form {
+                height: min-content;
+                &__inputs {
+                    margin: 0 5%;
+                }
+            }
+        }
+    }
+
+    @include b.breakpoint(xsmall) {
+        .hero-container {
+            &__form {
+                height: min-content;
+                &__inputs {
+                    margin: 0 0;
+                    &__group {
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+}

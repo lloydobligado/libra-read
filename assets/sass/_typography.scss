@@ -1,0 +1,17 @@
+@forward 'colors';
+
+a,
+a:active,
+a:visited {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+li {
+    list-style: none;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.1;
+}

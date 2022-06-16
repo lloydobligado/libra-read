@@ -1,0 +1,28 @@
+@use 'fonts' as font;
+@forward 'colors';
+@use 'functions' as function;
+
+.hide {
+    display: none;
+}
+
+html {
+    overflow: auto;
+    box-sizing: border-box;
+    font-size: 100%;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: font.$font;
+    background-color: var(--lightgray);
+    color: var(--dark);
+}

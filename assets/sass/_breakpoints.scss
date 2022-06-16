@@ -1,0 +1,31 @@
+@use 'functions' as function;
+
+// 575.98px, 767.98px, 991.98px, 1199.98px, 1399.98px
+$desktop-first: (
+    "xsmall": function.em(575.98),
+    "small": function.em(767.98),
+    "medium": function.em(991.98),
+    "large": function.em(1199.98),
+    "xlarge": function.em(1399.98),
+);
+
+@mixin breakpoint($size) {
+    @media (max-width: map-get($desktop-first, $size)) {
+        @content; 
+    }
+}
+
+// 576px, 768px, 992px, 1200px, 1400px
+$mobile-first: (
+    "xsmall": function.em(576),
+    "small": function.em(768),
+    "medium": function.em(992),
+    "large": function.em(1200),
+    "xlarge": function.em(1400),
+);
+
+@mixin breakpoint-up($size) {
+    @media (min-width: map-get($mobile-first, $size)) {
+        @content; 
+    }
+}
